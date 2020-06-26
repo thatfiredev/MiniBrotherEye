@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Mini BrotherEye</string>
+    <string name="light_theme">Light Theme</string>
+    <string name="dark_theme">Dark Theme</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="list_fragment_label">Characters List</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="error_cant_load_data">Oops! We couldnt load the data :(</string>
+</resources>
