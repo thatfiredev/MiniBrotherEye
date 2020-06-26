@@ -6,6 +6,8 @@ Mini Brother Eye is a small demo app that tries to follow Modern Android Develop
 
 ## Techstack and Open Source libraries
 
+### Code
+
 - Minimum SDK Level 19
 - [Kotlin Coroutines](https://github.com/Kotlin/kotlinx.coroutines) for asynchronous operations.
 - [Retrofit2](https://github.com/square/retrofit) to make HTTP calls to the REST API.
@@ -13,9 +15,6 @@ Mini Brother Eye is a small demo app that tries to follow Modern Android Develop
 - [Coil](https://github.com/coil-kt/coil) for image loading.
 - [Material Components](https://github.com/material-components/material-components-android)
  to display Material Design Components.
-- [Robolectric](https://github.com/robolectric/robolectric) and
- [AndroidX Test libraries](https://developer.android.com/training/testing) for Unit Testing.
-- [Mockito](https://github.com/mockito/mockito) to create the mocks used in the Unit Tests.
 - Android Jetpack
     - [LiveData](https://developer.android.com/topic/libraries/architecture/livedata)
     - [Navigation Component](https://developer.android.com/guide/navigation)
@@ -26,6 +25,14 @@ Mini Brother Eye is a small demo app that tries to follow Modern Android Develop
 - [ ] [Animations](https://developer.android.com/training/animation)
 - [ ] [Hilt](https://developer.android.com/training/dependency-injection/hilt-android) for
  Dependency Injection
+
+### Tests
+
+- [Robolectric](https://github.com/robolectric/robolectric) and
+ [AndroidX Test libraries](https://developer.android.com/training/testing) for Unit Testing.
+- [Mockito](https://github.com/mockito/mockito) to create the mocks used in the Unit Tests.
+- [MockWebServer](https://github.com/square/okhttp/tree/master/mockwebserver) to mock web server
+ calls.
 
 
 ## License
