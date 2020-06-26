@@ -1,6 +1,7 @@
 package io.github.rosariopfernandes.minibrothereye.ui.list
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -18,7 +19,9 @@ import io.github.rosariopfernandes.minibrothereye.util.DataResult
  */
 class ListFragment : Fragment() {
 
-    private val viewModel by viewModels<ListViewModel> { ListViewModelFactory() }
+    private val viewModel by viewModels<ListViewModel> {
+        ListViewModelFactory(requireActivity().applicationContext)
+    }
 
     private var _binding: FragmentListBinding? = null
     private val binding get() = _binding!!
@@ -69,6 +72,7 @@ class ListFragment : Fragment() {
                     val error = result.exception.message
                     error?.let {
                         binding.tvError.text = getString(R.string.error_cant_load_data)
+                        Log.e("ListFragment", it)
                     }
                     binding.progressBar.visibility = View.GONE
                     binding.rvCharacters.visibility = View.GONE
