@@ -1,12 +1,18 @@
 package io.github.rosariopfernandes.minibrothereye.model
 
+import androidx.room.ColumnInfo
+import androidx.room.Embedded
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity(tableName = "characters")
 data class Character(
-    val id: Int = 1,
+    @PrimaryKey val id: Int = 1,
     val name: String = "",
-    val powerStats: PowerStats = PowerStats(),
-    val appearance: Appearance = Appearance(),
-    val biography: Biography = Biography(),
-    val images: Images = Images()
+    @Embedded val powerStats: PowerStats = PowerStats(),
+    @Embedded val appearance: Appearance = Appearance(),
+    @Embedded val biography: Biography = Biography(),
+    @Embedded val images: Images = Images()
 )
 
 data class PowerStats(
@@ -37,5 +43,5 @@ data class Biography(
 )
 
 data class Images(
-    val md: String = ""
+    @ColumnInfo(name = "image_url") val md: String = ""
 )
