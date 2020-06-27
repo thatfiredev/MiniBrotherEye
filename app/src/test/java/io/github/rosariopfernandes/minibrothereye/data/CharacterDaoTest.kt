@@ -37,16 +37,16 @@ class CharacterDaoTest {
     @Test
     fun insertCharacter_savesData() = runBlocking {
         database.characterDao().insertCharacter(character1)
-        val savedCharacters = database.characterDao().getAll()
+        val savedCharacters = database.characterDao().get4Characters(0)
         assertTrue(savedCharacters.isNotEmpty())
     }
 
     @Test
     fun insertCharacters_savesData() = runBlocking {
-        var savedCharacters = database.characterDao().getAll()
+        var savedCharacters = database.characterDao().get4Characters(0)
         assertTrue(savedCharacters.isEmpty())
         database.characterDao().insertAll(characters)
-        savedCharacters = database.characterDao().getAll()
+        savedCharacters = database.characterDao().get4Characters(0)
         assertTrue(savedCharacters.isNotEmpty())
     }
 
@@ -55,7 +55,7 @@ class CharacterDaoTest {
         for (character in characters) {
             database.characterDao().insertCharacter(character)
         }
-        val retrievedCharacters = database.characterDao().getAll()
+        val retrievedCharacters = database.characterDao().get4Characters(0)
         assertTrue(retrievedCharacters == characters)
     }
 

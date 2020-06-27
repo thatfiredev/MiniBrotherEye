@@ -45,14 +45,13 @@ dependencies {
     implementation 'androidx.navigation:navigation-ui-ktx:2.2.2'
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.2.0'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
+    implementation 'androidx.paging:paging-runtime-ktx:3.0.0-alpha02'
     implementation "androidx.preference:preference-ktx:1.1.1"
 
     // Room
     implementation "androidx.room:room-runtime:2.2.5"
-    kapt "androidx.room:room-compiler:2.2.5" // For Kotlin use kapt instead of annotationProcessor
-
-    // optional - Kotlin Extensions and Coroutines support for Room
-    implementation "androidx.room:room-ktx:2.2.5"
+    implementation "androidx.room:room-ktx:2.2.5" // support for coroutines
+    kapt "androidx.room:room-compiler:2.2.5"
 
     // Retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'

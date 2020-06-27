@@ -1,18 +1,20 @@
 package io.github.rosariopfernandes.minibrothereye.ui.list
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.view.isGone
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
+import androidx.paging.LoadState
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
-import io.github.rosariopfernandes.minibrothereye.R
 import io.github.rosariopfernandes.minibrothereye.databinding.FragmentListBinding
-import io.github.rosariopfernandes.minibrothereye.util.DataResult
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
@@ -47,39 +49,34 @@ class ListFragment : Fragment() {
             rvCharacters.adapter = charactersAdapter
         }
 
-        viewModel.charactersLiveData.observe(viewLifecycleOwner, Observer { result ->
-            when (result) {
-                is DataResult.Success -> {
-                    val characters = result.data
-                    val items = characters.map { character ->
-                        return@map CharacterListItem(
-                            id = character.id,
-                            name = character.name,
-                            photoUrl = character.images.md
-                        )
+        lifecycleScope.launch {
+            viewModel.flow.collectLatest { pagingData ->
+                charactersAdapter.submitData(pagingData)
+            }
+        }
+
+        charactersAdapter.addLoadStateListener { loadState ->
+            with (binding) {
+                when (loadState.refresh) {
+                    is LoadState.Loading -> {
+                        progressBar.isVisible = true
+                        rvCharacters.isGone = true
+                        tvError.isGone = true
                     }
-                    charactersAdapter.submitList(items)
-                    binding.tvError.visibility = View.GONE
-                    binding.progressBar.visibility = View.GONE
-                    binding.rvCharacters.visibility = View.VISIBLE
-                }
-                is DataResult.InProgress -> {
-                    binding.tvError.visibility = View.GONE
-                    binding.rvCharacters.visibility = View.GONE
-                    binding.progressBar.visibility = View.VISIBLE
-                }
-                is DataResult.Error -> {
-                    val error = result.exception.message
-                    error?.let {
-                        binding.tvError.text = getString(R.string.error_cant_load_data)
-                        Log.e("ListFragment", it)
+                    is LoadState.Error -> {
+                        tvError.text = (loadState.refresh as LoadState.Error).error.message
+                        rvCharacters.isGone = true
+                        progressBar.isGone = true
+                        tvError.isVisible = true
                     }
-                    binding.progressBar.visibility = View.GONE
-                    binding.rvCharacters.visibility = View.GONE
-                    binding.tvError.visibility = View.VISIBLE
+                    else -> {
+                        rvCharacters.isVisible = true
+                        progressBar.isGone = true
+                        tvError.isGone = true
+                    }
                 }
             }
-        })
+        }
     }
 
     override fun onDestroyView() {
