@@ -36,7 +36,7 @@ fun bindErrorTextViewVisibility(tvError: TextView, state: LoadState) {
     when (state) {
         is LoadState.Loading -> tvError.isGone = true
         is LoadState.Error -> {
-            tvError.text = (state/* as LoadState.Error*/).error.message
+            tvError.text = state.error.message
             tvError.isVisible = true
         }
         else -> tvError.isGone = true
