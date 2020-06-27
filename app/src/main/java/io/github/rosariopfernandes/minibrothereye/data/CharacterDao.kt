@@ -2,6 +2,7 @@ package io.github.rosariopfernandes.minibrothereye.data
 
 import androidx.room.Dao
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import io.github.rosariopfernandes.minibrothereye.model.Character
 
@@ -14,9 +15,9 @@ interface CharacterDao {
     @Query("SELECT * FROM characters WHERE id=:id")
     suspend fun getInfo(id: Int): Character?
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertCharacter(character: Character)
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(characters: List<Character>)
 }

@@ -3,6 +3,7 @@ package io.github.rosariopfernandes.minibrothereye.data
 import androidx.paging.PagingSource
 import io.github.rosariopfernandes.minibrothereye.model.Character
 import io.github.rosariopfernandes.minibrothereye.repository.CharacterRepository
+import java.net.UnknownHostException
 
 class CharacterPagingSource(
     private val characterRepository: CharacterRepository
@@ -16,7 +17,8 @@ class CharacterPagingSource(
                 prevKey = null,
                 nextKey = nextPageNumber + 4
             )
-        } catch (e: Exception) {
+        } catch (e: UnknownHostException) {
+            // Unable to connect to the network
             LoadResult.Error(e)
         }
     }
