@@ -18,10 +18,10 @@ Mini Brother Eye is a small demo app that tries to follow Modern Android Develop
 - Android Jetpack
     - [LiveData](https://developer.android.com/topic/libraries/architecture/livedata)
     - [Navigation Component](https://developer.android.com/guide/navigation)
+    - [Paging Library 3](https://developer.android.com/topic/libraries/architecture/paging) (alpha)
     - [Room](https://developer.android.com/topic/libraries/architecture/room)
     - [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel)
     - [ ] [DataBinding](https://developer.android.com/topic/libraries/data-binding)
-    - [ ] [Paging Library](https://developer.android.com/topic/libraries/architecture/paging)
 - [ ] [Animations](https://developer.android.com/training/animation)
 - [ ] [Hilt](https://developer.android.com/training/dependency-injection/hilt-android) for
  Dependency Injection
