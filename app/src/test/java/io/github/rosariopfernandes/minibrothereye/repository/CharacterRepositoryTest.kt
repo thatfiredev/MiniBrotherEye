@@ -5,6 +5,7 @@ import io.github.rosariopfernandes.minibrothereye.model.Character
 import io.github.rosariopfernandes.minibrothereye.network.CharacterService
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
 import org.mockito.Mockito.`when`
@@ -15,7 +16,9 @@ class CharacterRepositoryTest {
     private val character2 = Character(id = 2) // cached
     private val character3 = Character(id = 3) // network
     private val character4 = Character(id = 4) // network
-    private val cachedCharacters = listOf(character1, character2)
+    private val character5 = Character(id = 5) // cached
+    private val character6 = Character(id = 6) // cached
+    private val cachedCharacters = listOf(character1, character2, character5, character6)
     private val networkCharacters = listOf(character3, character4)
 
     private lateinit var mockCharacterDao: CharacterDao
@@ -31,12 +34,18 @@ class CharacterRepositoryTest {
         `when`(mockCharacterService.getCharacterInfo(3)).thenReturn(character3)
         `when`(mockCharacterService.getCharacterInfo(4)).thenReturn(character4)
 
-        `when`(mockCharacterDao.getAll()).thenReturn(cachedCharacters)
+        `when`(mockCharacterDao.get4Characters(0)).thenReturn(cachedCharacters)
         `when`(mockCharacterDao.getInfo(1)).thenReturn(character1)
         `when`(mockCharacterDao.getInfo(2)).thenReturn(character2)
         repository = CharacterRepository.getInstance(mockCharacterDao, mockCharacterService)!!
     }
 
+    @Test
+    fun fetchCharacterPage_returnsExactly4Characters() = runBlocking {
+        val actualCharacters = repository.fetchCharacterPage(0)
+        assertEquals(cachedCharacters, actualCharacters)
+        assertTrue(actualCharacters.size == 4)
+    }
 
     @Test
     fun fetchCharacterInfo_returnsCharacterWithSpecificIdFromCache() = runBlocking {

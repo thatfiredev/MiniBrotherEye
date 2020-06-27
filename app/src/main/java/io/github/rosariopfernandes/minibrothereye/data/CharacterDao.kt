@@ -8,9 +8,6 @@ import io.github.rosariopfernandes.minibrothereye.model.Character
 @Dao
 interface CharacterDao {
 
-    @Query("SELECT * FROM characters")
-    suspend fun getAll(): List<Character>
-
     @Query("SELECT * FROM characters LIMIT 4 OFFSET :offset")
     suspend fun get4Characters(offset: Int): List<Character>
 
