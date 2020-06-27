@@ -11,6 +11,9 @@ interface CharacterDao {
     @Query("SELECT * FROM characters")
     suspend fun getAll(): List<Character>
 
+    @Query("SELECT * FROM characters LIMIT 4 OFFSET :offset")
+    suspend fun get4Characters(offset: Int): List<Character>
+
     @Query("SELECT * FROM characters WHERE id=:id")
     suspend fun getInfo(id: Int): Character?
 

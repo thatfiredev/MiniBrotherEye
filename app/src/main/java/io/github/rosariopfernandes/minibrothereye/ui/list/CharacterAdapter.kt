@@ -2,13 +2,14 @@ package io.github.rosariopfernandes.minibrothereye.ui.list
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import io.github.rosariopfernandes.minibrothereye.R
+import io.github.rosariopfernandes.minibrothereye.model.Character
 
 class CharacterAdapter(
     private val clickListener: (CharacterListItem) -> Unit
-) : ListAdapter<CharacterListItem, CharacterViewHolder>(DIFF_CALLBACK) {
+) : PagingDataAdapter<Character, CharacterViewHolder>(DIFF_CALLBACK) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CharacterViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -18,19 +19,26 @@ class CharacterAdapter(
 
     override fun onBindViewHolder(holder: CharacterViewHolder, position: Int) {
         val character = getItem(position)
-        holder.bindTo(character, clickListener)
+        character?.let {
+            val characterItem = CharacterListItem(
+                id = character.id,
+                name = character.name,
+                photoUrl = character.images.md
+            )
+            holder.bindTo(characterItem, clickListener)
+        }
     }
 
     companion object {
-        val DIFF_CALLBACK = object: DiffUtil.ItemCallback<CharacterListItem>() {
+        val DIFF_CALLBACK = object: DiffUtil.ItemCallback<Character>() {
             override fun areItemsTheSame(
-                oldItem: CharacterListItem,
-                newItem: CharacterListItem
+                oldItem: Character,
+                newItem: Character
             ) = oldItem.id == newItem.id
 
             override fun areContentsTheSame(
-                oldItem: CharacterListItem,
-                newItem: CharacterListItem
+                oldItem: Character,
+                newItem: Character
             ) = oldItem == newItem
         }
     }

@@ -26,16 +26,17 @@ class CharacterRepository(
         }
     }
 
-    suspend fun fetchCharacterList(): List<Character> {
+    /**
+     * Fetches 4 characters
+     */
+    suspend fun fetchCharacterPage(offset: Int): List<Character> {
         val charactersList: List<Character>
-        val cachedCharacters = characterDao.getAll()
-        if (cachedCharacters.isNotEmpty()) {
-            charactersList = cachedCharacters
-        } else {
+        val cachedCharacters = characterDao.get4Characters(offset)
+        if (cachedCharacters.isEmpty()) {
             charactersList = characterService.getCharacterList()
             characterDao.insertAll(charactersList)
         }
-        return charactersList
+        return characterDao.get4Characters(offset)
     }
 
     suspend fun fetchCharacterInfo(characterId: Int): Character {

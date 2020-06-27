@@ -1,32 +1,26 @@
 package io.github.rosariopfernandes.minibrothereye.ui.list
 
 import android.content.Context
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.liveData
+import androidx.lifecycle.viewModelScope
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.cachedIn
 import io.github.rosariopfernandes.minibrothereye.data.AppDatabase
-import io.github.rosariopfernandes.minibrothereye.model.Character
+import io.github.rosariopfernandes.minibrothereye.data.CharacterPagingSource
 import io.github.rosariopfernandes.minibrothereye.network.CharacterService
 import io.github.rosariopfernandes.minibrothereye.repository.CharacterRepository
 import io.github.rosariopfernandes.minibrothereye.util.API_BASE_URL
-import io.github.rosariopfernandes.minibrothereye.util.DataResult
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 class ListViewModel(
     private val repository: CharacterRepository
 ) : ViewModel() {
-    val charactersLiveData: LiveData<DataResult<List<Character>>> = liveData {
-        emit(DataResult.InProgress)
-        try {
-            val characters = repository.fetchCharacterList()
-            emit(DataResult.Success(characters))
-        } catch (e: Exception) {
-            emit(DataResult.Error(e))
-        }
-    }
-
+    val flow = Pager(PagingConfig(pageSize = 4, prefetchDistance = 4)) {
+        CharacterPagingSource(repository)
+    }.flow.cachedIn(viewModelScope)
 }
 
 internal class ListViewModelFactory(

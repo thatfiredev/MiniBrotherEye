@@ -37,11 +37,6 @@ class CharacterRepositoryTest {
         repository = CharacterRepository.getInstance(mockCharacterDao, mockCharacterService)!!
     }
 
-    @Test
-    fun fetchCharactersList_returnsListOfCharactersFromCache() = runBlocking {
-        val actualCharacters = repository.fetchCharacterList()
-        assertEquals(cachedCharacters, actualCharacters)
-    }
 
     @Test
     fun fetchCharacterInfo_returnsCharacterWithSpecificIdFromCache() = runBlocking {
