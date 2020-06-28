@@ -9,6 +9,7 @@ import androidx.databinding.BindingAdapter
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.RecyclerView
 import coil.api.load
+import io.github.rosariopfernandes.minibrothereye.R
 
 @BindingAdapter("adapter")
 fun bindRecyclerViewAdapter(view: RecyclerView, adapter: RecyclerView.Adapter<*>) {
@@ -47,5 +48,8 @@ fun bindErrorTextViewVisibility(tvError: TextView, state: LoadState) {
 
 @BindingAdapter("imageSrc")
 fun bindImageView(imageView: ImageView, url: String) {
-    imageView.load(url)
+    imageView.load(url) {
+        crossfade(true)
+        placeholder(R.drawable.no_portrait)
+    }
 }
