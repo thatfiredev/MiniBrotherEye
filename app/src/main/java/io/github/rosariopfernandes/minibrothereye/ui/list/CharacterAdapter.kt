@@ -4,17 +4,21 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
-import io.github.rosariopfernandes.minibrothereye.R
+import androidx.recyclerview.widget.RecyclerView
+import io.github.rosariopfernandes.minibrothereye.databinding.ItemCharacterBinding
 import io.github.rosariopfernandes.minibrothereye.model.Character
 
 class CharacterAdapter(
     private val clickListener: (CharacterListItem) -> Unit
-) : PagingDataAdapter<Character, CharacterViewHolder>(DIFF_CALLBACK) {
+) : PagingDataAdapter<Character, CharacterAdapter.CharacterViewHolder>(DIFF_CALLBACK) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CharacterViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_character, parent, false)
-        return CharacterViewHolder(view)
+        val binding = ItemCharacterBinding.inflate(
+            LayoutInflater.from(parent.context),
+            parent,
+            false
+        )
+        return CharacterViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: CharacterViewHolder, position: Int) {
@@ -28,6 +32,23 @@ class CharacterAdapter(
             holder.bindTo(characterItem, clickListener)
         }
     }
+
+    class CharacterViewHolder(
+        private val binding: ItemCharacterBinding
+    ) : RecyclerView.ViewHolder(binding.root) {
+
+        fun bindTo(item: CharacterListItem, clickListener: (CharacterListItem) -> Unit) {
+            binding.character = item
+            itemView.setOnClickListener {
+                clickListener(item)
+            }
+        }
+    }
+
+    /**
+     * Helper class to represent the character displayed on the UI
+     */
+    data class CharacterListItem(val id: Int, val photoUrl: String, val name: String)
 
     companion object {
         val DIFF_CALLBACK = object: DiffUtil.ItemCallback<Character>() {

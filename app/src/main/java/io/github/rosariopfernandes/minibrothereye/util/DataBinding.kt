@@ -1,5 +1,6 @@
 package io.github.rosariopfernandes.minibrothereye.util
 
+import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.core.view.isGone
@@ -7,6 +8,7 @@ import androidx.core.view.isVisible
 import androidx.databinding.BindingAdapter
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.RecyclerView
+import coil.api.load
 
 @BindingAdapter("adapter")
 fun bindRecyclerViewAdapter(view: RecyclerView, adapter: RecyclerView.Adapter<*>) {
@@ -41,4 +43,9 @@ fun bindErrorTextViewVisibility(tvError: TextView, state: LoadState) {
         }
         else -> tvError.isGone = true
     }
+}
+
+@BindingAdapter("imageSrc")
+fun bindImageView(imageView: ImageView, url: String) {
+    imageView.load(url)
 }
