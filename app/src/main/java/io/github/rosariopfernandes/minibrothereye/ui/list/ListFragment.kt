@@ -8,7 +8,9 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
+import io.github.rosariopfernandes.minibrothereye.R
 import io.github.rosariopfernandes.minibrothereye.databinding.FragmentListBinding
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -36,8 +38,7 @@ class ListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val charactersAdapter = CharacterAdapter { item ->
-            Toast.makeText(context, "${item.name} doesnt have a profile yet",
-                Toast.LENGTH_SHORT).show()
+            findNavController().navigate(R.id.action_ListFragment_to_InfoFragment)
         }.apply { addLoadStateListener { binding.loadState = it.refresh } }
 
         binding.characterAdapter = charactersAdapter
