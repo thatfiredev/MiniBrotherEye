@@ -1,4 +1,4 @@
-package io.github.rosariopfernandes.minibrothereye
+package io.github.rosariopfernandes.minibrothereye.ui
 
 import android.content.SharedPreferences
 import android.os.Build
@@ -10,6 +10,8 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContextCompat
 import androidx.core.content.edit
 import androidx.preference.PreferenceManager
+import io.github.rosariopfernandes.minibrothereye.R
+import io.github.rosariopfernandes.minibrothereye.databinding.ActivityMainBinding
 import io.github.rosariopfernandes.minibrothereye.util.PREF_DARK_THEME
 
 class MainActivity : AppCompatActivity() {
@@ -18,8 +20,10 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        setSupportActionBar(findViewById(R.id.toolbar))
+        val binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        setSupportActionBar(binding.toolbar)
+
         preferences = PreferenceManager.getDefaultSharedPreferences(applicationContext)
     }
 
@@ -34,14 +38,18 @@ class MainActivity : AppCompatActivity() {
         darkModeEnabled = preferences.getBoolean(PREF_DARK_THEME, false)
         if (darkModeEnabled) {
             menuItem.icon =
-                ContextCompat.getDrawable(this, R.drawable.ic_brightness_high_white_24dp)
+                ContextCompat.getDrawable(this,
+                    R.drawable.ic_brightness_high_white_24dp
+                )
             menuItem.title = getString(R.string.light_theme)
             if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP) {
                 window.statusBarColor = ContextCompat.getColor(this, android.R.color.black)
             }
         } else {
             menuItem.icon =
-                ContextCompat.getDrawable(this, R.drawable.ic_brightness_medium_white_24dp)
+                ContextCompat.getDrawable(this,
+                    R.drawable.ic_brightness_medium_white_24dp
+                )
             menuItem.title = getString(R.string.dark_theme)
         }
         return true
