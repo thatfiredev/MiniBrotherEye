@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import dagger.hilt.android.AndroidEntryPoint
 import io.github.rosariopfernandes.minibrothereye.databinding.FragmentListBinding
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -15,11 +16,10 @@ import kotlinx.coroutines.launch
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
  */
+@AndroidEntryPoint
 class ListFragment : Fragment() {
 
-    private val viewModel by viewModels<ListViewModel> {
-        ListViewModelFactory(requireActivity().applicationContext)
-    }
+    private val viewModel: ListViewModel by viewModels()
 
     private var _binding: FragmentListBinding? = null
     private val binding get() = _binding!!

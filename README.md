@@ -22,9 +22,9 @@ Mini Brother Eye is a small demo app that tries to follow Modern Android Develop
     - [Paging Library 3](https://developer.android.com/topic/libraries/architecture/paging) (alpha)
     - [Room](https://developer.android.com/topic/libraries/architecture/room)
     - [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel)
-- [ ] [Animations](https://developer.android.com/training/animation)
-- [ ] [Hilt](https://developer.android.com/training/dependency-injection/hilt-android) for
+- [Hilt](https://developer.android.com/training/dependency-injection/hilt-android) (alpha) for
  Dependency Injection
+- [ ] [Animations](https://developer.android.com/training/animation)
 
 ### Tests
 
