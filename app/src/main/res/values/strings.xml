@@ -16,4 +16,11 @@
     <string name="label_weight">Weight</string>
 
     <string name="label_biography">Biography</string>
+
+    <string name="label_intelligence">Intelligence</string>
+    <string name="label_durability">Durability</string>
+    <string name="label_strength">Strength</string>
+    <string name="label_speed">Speed</string>
+    <string name="label_power">Power</string>
+    <string name="label_combat">Combat</string>
 </resources>

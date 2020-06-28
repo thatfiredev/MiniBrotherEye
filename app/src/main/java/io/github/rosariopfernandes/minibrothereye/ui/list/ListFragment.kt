@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -38,7 +39,8 @@ class ListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val charactersAdapter = CharacterAdapter { item ->
-            findNavController().navigate(R.id.action_ListFragment_to_InfoFragment)
+            val args = bundleOf("id" to item.id)
+            findNavController().navigate(R.id.action_ListFragment_to_InfoFragment, args)
         }.apply { addLoadStateListener { binding.loadState = it.refresh } }
 
         binding.characterAdapter = charactersAdapter

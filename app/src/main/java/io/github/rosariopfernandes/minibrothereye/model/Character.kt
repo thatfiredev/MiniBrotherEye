@@ -9,7 +9,7 @@ import androidx.room.PrimaryKey
 data class Character(
     @PrimaryKey val id: Int = 1,
     val name: String = "",
-    @Embedded val powerStats: PowerStats = PowerStats(),
+    @Embedded val powerstats: PowerStats = PowerStats(),
     @Embedded val appearance: Appearance = Appearance(),
     @Embedded val biography: Biography = Biography(),
     @Embedded val images: Images = Images()

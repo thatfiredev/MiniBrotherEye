@@ -44,9 +44,6 @@ class MainActivity : AppCompatActivity() {
                     R.drawable.ic_brightness_high_white_24dp
                 )
             menuItem.title = getString(R.string.light_theme)
-            if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP) {
-                window.statusBarColor = ContextCompat.getColor(this, android.R.color.black)
-            }
         } else {
             menuItem.icon =
                 ContextCompat.getDrawable(this,
