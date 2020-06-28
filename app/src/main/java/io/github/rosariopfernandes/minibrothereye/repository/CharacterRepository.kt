@@ -3,28 +3,12 @@ package io.github.rosariopfernandes.minibrothereye.repository
 import io.github.rosariopfernandes.minibrothereye.data.CharacterDao
 import io.github.rosariopfernandes.minibrothereye.model.Character
 import io.github.rosariopfernandes.minibrothereye.network.CharacterService
+import javax.inject.Inject
 
-class CharacterRepository(
+class CharacterRepository @Inject constructor(
     private val characterDao: CharacterDao,
     private val characterService: CharacterService
 ) {
-
-    companion object {
-        @Volatile
-        private var instance: CharacterRepository? = null
-
-        fun getInstance(
-            dao: CharacterDao,
-            service: CharacterService
-        ): CharacterRepository? {
-            return instance ?: synchronized(CharacterRepository::class.java) {
-                if (instance == null) {
-                    instance = CharacterRepository(dao, service)
-                }
-                return instance
-            }
-        }
-    }
 
     /**
      * Fetches 4 characters

@@ -10,10 +10,12 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContextCompat
 import androidx.core.content.edit
 import androidx.preference.PreferenceManager
+import dagger.hilt.android.AndroidEntryPoint
 import io.github.rosariopfernandes.minibrothereye.R
 import io.github.rosariopfernandes.minibrothereye.databinding.ActivityMainBinding
 import io.github.rosariopfernandes.minibrothereye.util.PREF_DARK_THEME
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private lateinit var preferences: SharedPreferences
     private var darkModeEnabled = false

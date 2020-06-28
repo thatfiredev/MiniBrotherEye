@@ -3,8 +3,10 @@ package io.github.rosariopfernandes.minibrothereye
 import android.app.Application
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.preference.PreferenceManager
+import dagger.hilt.android.HiltAndroidApp
 import io.github.rosariopfernandes.minibrothereye.util.PREF_DARK_THEME
 
+@HiltAndroidApp
 class BrotherEyeApplication : Application() {
 
     override fun onCreate() {
