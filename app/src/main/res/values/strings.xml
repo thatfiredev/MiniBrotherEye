@@ -9,7 +9,7 @@
     <string name="previous">Previous</string>
 
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
-    <string name="error_cant_load_data">Oops! We couldnt load the data :(</string>
+    <string name="error_cant_load_data">There was an error loading the data. Are you connected to the internet?</string>
 
     <string name="label_gender">Gender</string>
     <string name="label_height">Height</string>

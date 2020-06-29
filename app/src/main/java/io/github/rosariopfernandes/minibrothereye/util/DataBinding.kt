@@ -1,6 +1,7 @@
 package io.github.rosariopfernandes.minibrothereye.util
 
 import android.text.TextUtils
+import android.view.View
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
@@ -50,11 +51,17 @@ fun bindErrorTextViewVisibility(tvError: TextView, state: LoadState) {
     when (state) {
         is LoadState.Loading -> tvError.isGone = true
         is LoadState.Error -> {
-            tvError.text = state.error.message
+            tvError.setText(R.string.error_cant_load_data)
+            state.error.printStackTrace()
             tvError.isVisible = true
         }
         else -> tvError.isGone = true
     }
+}
+
+@BindingAdapter("isVisibile")
+fun bindVisibility(view: View, isVisible: Boolean) {
+    view.visibility = if (isVisible) View.VISIBLE else View.GONE
 }
 
 @BindingAdapter("imageSrc")
@@ -62,6 +69,7 @@ fun bindImageView(imageView: ImageView, url: String) {
     imageView.load(url) {
         crossfade(true)
         placeholder(R.drawable.no_portrait)
+        error(R.drawable.no_portrait)
     }
 }
 

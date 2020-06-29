@@ -6,7 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
+import io.github.rosariopfernandes.minibrothereye.R
 import io.github.rosariopfernandes.minibrothereye.databinding.FragmentCharacterInfoBinding
 
 /**
@@ -38,6 +41,13 @@ class CharacterInfoFragment : Fragment() {
             lifecycleOwner = viewLifecycleOwner
             this.viewmodel = viewModel
         }
+        viewModel.exception.observe(viewLifecycleOwner, Observer { exception ->
+            exception?.let {
+                it.printStackTrace()
+                Snackbar.make(view, R.string.error_cant_load_data, Snackbar.LENGTH_INDEFINITE)
+                    .show()
+            }
+        })
     }
 
     override fun onDestroyView() {
