@@ -13,6 +13,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import io.github.rosariopfernandes.minibrothereye.R
 import io.github.rosariopfernandes.minibrothereye.databinding.FragmentCharacterInfoBinding
 import io.github.rosariopfernandes.minibrothereye.util.DataResult
+import io.github.rosariopfernandes.minibrothereye.util.bindCharacterBiography
 
 /**
  * A simple [Fragment] subclass as the second destination in the navigation.
@@ -42,12 +43,14 @@ class CharacterInfoFragment : Fragment() {
                 when (result) {
                     is DataResult.Success -> {
                         val characterInfo = result.data
-                        Log.e("Character", "${characterInfo.powerstats}")
                         binding.ivCharacterPhoto.load(characterInfo.images.md) {
                             crossfade(true)
                             placeholder(R.drawable.no_portrait)
                         }
                         binding.character = characterInfo
+                        binding.tvBiography.text =
+                            bindCharacterBiography(characterInfo.biography,
+                                characterInfo.work, characterInfo.connections)
                         binding.rvPowerStats.adapter = PowerStatAdapter(characterInfo.powerstats)
                     }
                     is DataResult.InProgress -> {
