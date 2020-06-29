@@ -2,6 +2,9 @@ package io.github.rosariopfernandes.minibrothereye.ui.list
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.view.ViewCompat
+import androidx.navigation.Navigator
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -9,7 +12,7 @@ import io.github.rosariopfernandes.minibrothereye.databinding.ItemCharacterBindi
 import io.github.rosariopfernandes.minibrothereye.model.Character
 
 class CharacterAdapter(
-    private val clickListener: (CharacterListItem) -> Unit
+    private val clickListener: (CharacterListItem, Navigator.Extras) -> Unit
 ) : PagingDataAdapter<Character, CharacterAdapter.CharacterViewHolder>(DIFF_CALLBACK) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CharacterViewHolder {
@@ -37,10 +40,17 @@ class CharacterAdapter(
         private val binding: ItemCharacterBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bindTo(item: CharacterListItem, clickListener: (CharacterListItem) -> Unit) {
+        fun bindTo(
+            item: CharacterListItem,
+            clickListener: (CharacterListItem, Navigator.Extras) -> Unit
+        ) {
             binding.character = item
+            ViewCompat.setTransitionName(binding.root, "${item.id}")
             itemView.setOnClickListener {
-                clickListener(item)
+                val extras = FragmentNavigatorExtras(
+                    binding.root to "${item.id}"
+                )
+                clickListener(item, extras)
             }
         }
     }
