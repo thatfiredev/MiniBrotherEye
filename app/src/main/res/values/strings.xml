@@ -23,4 +23,17 @@
     <string name="label_speed">Speed</string>
     <string name="label_power">Power</string>
     <string name="label_combat">Combat</string>
+
+    <string name="label_villain">Villain</string>
+    <string name="label_antihero">Antihero</string>
+
+    <string name="label_bio_name">%s is a </string>
+    <string name="label_bio_place_of_birth"> born in %s</string>
+    <string name="label_bio_alteregos">, also known as %s</string>
+    <string name="label_bio_firstAppearance"> They first appeared in %s</string>
+    <string name="label_bio_occupation"> Known for working as %s</string>
+    <string name="label_bio_work_base">, usually at %s</string>
+    <string name="label_bio_affiliation"> \nAffiliations: %s.</string>
+    <string name="label_bio_relatives"> Related to: %s.</string>
+    <string name="label_bio_aliases"> Some of their aliases include %s.</string>
 </resources>

@@ -13,11 +13,18 @@ import coil.api.load
 import io.github.rosariopfernandes.minibrothereye.R
 import io.github.rosariopfernandes.minibrothereye.model.Biography
 import io.github.rosariopfernandes.minibrothereye.model.Connections
+import io.github.rosariopfernandes.minibrothereye.model.PowerStats
 import io.github.rosariopfernandes.minibrothereye.model.Work
+import io.github.rosariopfernandes.minibrothereye.ui.characterinfo.PowerStatAdapter
 
 @BindingAdapter("adapter")
 fun bindRecyclerViewAdapter(view: RecyclerView, adapter: RecyclerView.Adapter<*>) {
     view.adapter = adapter
+}
+
+@BindingAdapter("powerStats")
+fun bindRecyclerViewAdapter(view: RecyclerView, powerStats: PowerStats) {
+    view.adapter = PowerStatAdapter(powerStats)
 }
 
 @BindingAdapter("visibility")
@@ -58,49 +65,48 @@ fun bindImageView(imageView: ImageView, url: String) {
     }
 }
 
-// @BindingAdapter("biography", "work", "connections")
+@BindingAdapter("biography", "work", "connections")
 fun bindCharacterBiography(
-    // textView: TextView,
+    textView: TextView,
     biography: Biography,
     work: Work,
     connections: Connections
-): String {
+) {
+    val context = textView.context
     var bioText = ""
 
     if (biography.fullName != "") {
-        bioText += biography.fullName + " is a "
+        bioText += context.getString(R.string.label_bio_name, biography.fullName)
     }
     bioText += if (biography.alignment == "bad") {
-        "Villain"
+        context.getString(R.string.label_villain)
     } else {
-        "Anti-hero"
+        context.getString(R.string.label_antihero)
     }
     if (biography.placeOfBirth != "-") {
-        bioText += " born in " + biography.placeOfBirth
+        bioText += context.getString(R.string.label_bio_place_of_birth, biography.placeOfBirth)
     }
     if (biography.alterEgos != "No alter egos found.") {
-        bioText += ", also known as " + biography.alterEgos
+        bioText += context.getString(R.string.label_bio_alteregos, biography.alterEgos)
     }
     bioText += "."
     if (biography.firstAppearance != "-") {
-        bioText += " They first appeared in ${biography.firstAppearance}."
+        bioText += context.getString(R.string.label_bio_firstAppearance, biography.firstAppearance)
     }
     if (work.occupation != "-") {
-        bioText += " They're known for working as ${work.occupation}."
+        bioText += context.getString(R.string.label_bio_occupation, work.occupation)
     }
     if (work.base != "-") {
-        bioText += " Usually working at ${work.base}."
+        bioText += context.getString(R.string.label_bio_work_base, work.base)
     }
     if (connections.groupAffiliation != "-") {
-        bioText += " They're affiliated with: " + connections.groupAffiliation + "."
+        bioText += context.getString(R.string.label_bio_affiliation, connections.groupAffiliation)
     }
     if (connections.relatives != "-") {
-        bioText += " Related to: " + connections.relatives + "."
+        bioText += context.getString(R.string.label_bio_relatives, connections.relatives)
     }
-    if (biography.aliases[0] != "-") {
-        bioText += " Some of their aliases include "
-        bioText += TextUtils.join(", ", biography.aliases)
+    if (biography.aliases.isNotEmpty() && biography.aliases[0] != "-") {
+        bioText += context.getString(R.string.label_bio_aliases, TextUtils.join(", ", biography.aliases))
     }
-    return bioText
-    // textView.text = bioText
+    textView.text = bioText
 }

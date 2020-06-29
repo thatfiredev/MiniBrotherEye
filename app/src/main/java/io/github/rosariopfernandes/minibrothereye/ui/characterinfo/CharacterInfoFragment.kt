@@ -39,29 +39,11 @@ class CharacterInfoFragment : Fragment() {
 
         val characterId = requireArguments().getInt("id")
         viewModel.fetchCharacterInfo(characterId)
-            .observe(viewLifecycleOwner, Observer { result ->
-                when (result) {
-                    is DataResult.Success -> {
-                        val characterInfo = result.data
-                        binding.ivCharacterPhoto.load(characterInfo.images.md) {
-                            crossfade(true)
-                            placeholder(R.drawable.no_portrait)
-                        }
-                        binding.character = characterInfo
-                        binding.tvBiography.text =
-                            bindCharacterBiography(characterInfo.biography,
-                                characterInfo.work, characterInfo.connections)
-                        binding.rvPowerStats.adapter = PowerStatAdapter(characterInfo.powerstats)
-                    }
-                    is DataResult.InProgress -> {
-                        // TODO: Add Progress bar
-                    }
-                    is DataResult.Error -> {
-                        val error = result.exception
-                        error.printStackTrace()
-                    }
-                }
-            })
+
+        with (binding) {
+            lifecycleOwner = viewLifecycleOwner
+            this.viewmodel = viewModel
+        }
     }
 
     override fun onDestroyView() {
