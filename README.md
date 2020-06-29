@@ -15,6 +15,7 @@ Mini Brother Eye is a small demo app that tries to follow Modern Android Develop
 - [Coil](https://github.com/coil-kt/coil) for image loading.
 - [Material Components](https://github.com/material-components/material-components-android)
  to display Material Design Components.
+- [Material Motion](https://material.io/develop/android/theming/motion/) - transitions for navigation.
 - Android Jetpack
     - [DataBinding](https://developer.android.com/topic/libraries/data-binding)
     - [LiveData](https://developer.android.com/topic/libraries/architecture/livedata)
@@ -24,7 +25,6 @@ Mini Brother Eye is a small demo app that tries to follow Modern Android Develop
     - [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel)
 - [Hilt](https://developer.android.com/training/dependency-injection/hilt-android) (alpha) for
  Dependency Injection
-- [ ] [Animations](https://developer.android.com/training/animation)
 - [RamiJ3mli/PercentageChartView](https://github.com/RamiJ3mli/PercentageChartView) to display
  progress information
 
