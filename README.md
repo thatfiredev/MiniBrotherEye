@@ -25,6 +25,8 @@ Mini Brother Eye is a small demo app that tries to follow Modern Android Develop
 - [Hilt](https://developer.android.com/training/dependency-injection/hilt-android) (alpha) for
  Dependency Injection
 - [ ] [Animations](https://developer.android.com/training/animation)
+- [RamiJ3mli/PercentageChartView](https://github.com/RamiJ3mli/PercentageChartView) to display
+ progress information
 
 ### Tests
 
