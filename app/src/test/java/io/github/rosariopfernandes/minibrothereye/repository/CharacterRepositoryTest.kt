@@ -37,7 +37,7 @@ class CharacterRepositoryTest {
         `when`(mockCharacterDao.get4Characters(0)).thenReturn(cachedCharacters)
         `when`(mockCharacterDao.getInfo(1)).thenReturn(character1)
         `when`(mockCharacterDao.getInfo(2)).thenReturn(character2)
-        repository = CharacterRepository(mockCharacterDao, mockCharacterService)
+        repository = CharacterRepositoryImpl(mockCharacterDao, mockCharacterService)
     }
 
     @Test
