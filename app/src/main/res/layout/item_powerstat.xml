@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.ramijemli.percentagechartview.PercentageChartView
+        android:id="@+id/pbStat"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:pcv_mode="ring"
+        app:pcv_orientation="clockwise"
+        app:pcv_animDuration="500"
+        app:pcv_animInterpolator="accelerate_decelerate"
+        app:pcv_startAngle="270"
+        app:pcv_progressBarThickness="2dp"
+        app:pcv_drawBackgroundBar="false"
+        app:pcv_textColor="?android:attr/textColorPrimary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvStatLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Intelligence"
+        app:layout_constraintEnd_toEndOf="@+id/pbStat"
+        app:layout_constraintStart_toStartOf="@+id/pbStat"
+        app:layout_constraintTop_toBottomOf="@+id/pbStat" />
+</androidx.constraintlayout.widget.ConstraintLayout>

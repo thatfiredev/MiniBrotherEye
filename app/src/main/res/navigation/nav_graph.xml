@@ -12,14 +12,14 @@
         tools:layout="@layout/fragment_list">
 
         <action
-            android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/SecondFragment" />
+            android:id="@+id/action_ListFragment_to_InfoFragment"
+            app:destination="@id/CharacterInfoFragment" />
     </fragment>
     <fragment
-        android:id="@+id/SecondFragment"
-        android:name="io.github.rosariopfernandes.minibrothereye.ui.SecondFragment"
+        android:id="@+id/CharacterInfoFragment"
+        android:name="io.github.rosariopfernandes.minibrothereye.ui.characterinfo.CharacterInfoFragment"
         android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second">
+        tools:layout="@layout/fragment_character_info">
 
         <action
             android:id="@+id/action_SecondFragment_to_FirstFragment"

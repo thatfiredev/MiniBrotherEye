@@ -18,6 +18,7 @@ object LocalDatabaseModule {
     @Singleton
     fun provideAppDatabase(application: Application): AppDatabase {
         return Room.databaseBuilder(application, AppDatabase::class.java, "characters-db")
+            .fallbackToDestructiveMigration() // Recreate tables if no migrations were found
             .build()
     }
 

@@ -8,6 +8,7 @@ import dagger.hilt.android.scopes.ActivityRetainedScoped
 import io.github.rosariopfernandes.minibrothereye.data.CharacterDao
 import io.github.rosariopfernandes.minibrothereye.network.CharacterService
 import io.github.rosariopfernandes.minibrothereye.repository.CharacterRepository
+import io.github.rosariopfernandes.minibrothereye.repository.CharacterRepositoryImpl
 
 @Module
 @InstallIn(ActivityRetainedComponent::class)
@@ -19,6 +20,6 @@ object RepositoryModule {
         characterDao: CharacterDao,
         characterService: CharacterService
     ): CharacterRepository {
-        return CharacterRepository(characterDao, characterService)
+        return CharacterRepositoryImpl(characterDao, characterService)
     }
 }
