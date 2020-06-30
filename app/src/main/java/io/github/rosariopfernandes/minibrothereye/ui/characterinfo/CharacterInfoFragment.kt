@@ -5,9 +5,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
+import androidx.core.view.ViewCompat
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.google.android.material.snackbar.Snackbar
+import com.google.android.material.transition.MaterialContainerTransform
 import dagger.hilt.android.AndroidEntryPoint
 import io.github.rosariopfernandes.minibrothereye.R
 import io.github.rosariopfernandes.minibrothereye.databinding.FragmentCharacterInfoBinding
@@ -23,11 +26,22 @@ class CharacterInfoFragment : Fragment() {
     private var _binding: FragmentCharacterInfoBinding? = null
     private val binding get() = _binding!!
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        sharedElementEnterTransition = MaterialContainerTransform().apply {
+            fadeMode = MaterialContainerTransform.FADE_MODE_THROUGH
+            scrimColor = ContextCompat.getColor(requireContext(), android.R.color.transparent)
+        }
+    }
+
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentCharacterInfoBinding.inflate(inflater, container, false)
+        val args = requireArguments()
+        ViewCompat.setTransitionName(binding.root, "${args.getInt("id")}")
         return binding.root
     }
 
