@@ -1,8 +1,18 @@
+<p align="center">
+  <a href="https://github.com/rosariopfernandes/MiniBrotherEye/actions"><img alt="Build Status" src="https://github.com/rosariopfernandes/MiniBrotherEye/workflows/Android%20CI%20(Push)/badge.svg"/></a>
+  <a href="https://opensource.org/licenses/Apache-2.0"><img alt="License" src="https://img.shields.io/badge/License-Apache%202.0-blue.svg"/></a>
+  <a href="https://android-arsenal.com/api?level=19"><img alt="API" src="https://img.shields.io/badge/API-19%2B-brightgreen.svg?style=flat"/></a>
+</p>
 <h1 align="center">Mini Brother Eye</h1>
 
 Mini Brother Eye is a small demo app that tries to follow Modern Android Development best practices
  and uses the latest tools and Open Source Libraries.
 
+It is supposed to be a smaller version of DC's [Brother Eye](https://dc.fandom.com/wiki/Brother_Eye_(New_Earth)).
+
+<p align="center">
+<img src="/art/screenshots.png" alt="Three App Screenshots"/>
+</p>
 
 ## Techstack and Open Source libraries
 
