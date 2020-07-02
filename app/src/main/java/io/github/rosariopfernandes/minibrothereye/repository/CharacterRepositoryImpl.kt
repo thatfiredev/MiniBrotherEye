@@ -13,20 +13,26 @@ class CharacterRepositoryImpl @Inject constructor(
     /**
      * Fetches 4 characters
      */
-    override suspend fun fetchCharacterPage(offset: Int): List<Character> {
+    override suspend fun fetchCharacterPage(
+        offset: Int,
+        forceRefresh: Boolean
+    ): List<Character> {
         val charactersList: List<Character>
         val cachedCharacters = characterDao.get4Characters(offset)
-        if (cachedCharacters.isEmpty()) {
+        if (cachedCharacters.isEmpty() || forceRefresh) {
             charactersList = characterService.getCharacterList()
             characterDao.insertAll(charactersList)
         }
         return characterDao.get4Characters(offset)
     }
 
-    override suspend fun fetchCharacterInfo(characterId: Int): Character {
+    override suspend fun fetchCharacterInfo(
+        characterId: Int,
+        forceRefresh: Boolean
+    ): Character {
         val characterInfo: Character
         val cachedCharacter = characterDao.getInfo(characterId)
-        if (cachedCharacter != null) {
+        if (cachedCharacter != null && !forceRefresh) {
             characterInfo = cachedCharacter
         } else {
             characterInfo = characterService.getCharacterInfo(characterId)

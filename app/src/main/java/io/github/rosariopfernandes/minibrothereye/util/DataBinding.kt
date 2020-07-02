@@ -10,6 +10,7 @@ import androidx.core.view.isVisible
 import androidx.databinding.BindingAdapter
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import coil.api.load
 import io.github.rosariopfernandes.minibrothereye.R
 import io.github.rosariopfernandes.minibrothereye.model.Biography
@@ -34,6 +35,15 @@ fun bindRecyclerViewVisibility(recyclerView: RecyclerView, state: LoadState) {
         is LoadState.Loading -> recyclerView.isGone = true
         is LoadState.Error -> recyclerView.isGone = true
         else -> recyclerView.isVisible = true
+    }
+}
+
+@BindingAdapter("isRefreshing")
+fun bindSwipeRefreshing(swipeRefreshLayout: SwipeRefreshLayout, state: LoadState) {
+    when (state) {
+        is LoadState.Loading -> swipeRefreshLayout.isRefreshing = true
+        is LoadState.Error -> swipeRefreshLayout.isRefreshing = false
+        else -> swipeRefreshLayout.isRefreshing = false
     }
 }
 

@@ -37,17 +37,25 @@
             android:layout_margin="16dp"
             app:visibility="@{loadState}"/>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvCharacters"
-            android:visibility="gone"
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swipeRefreshLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scrollbars="vertical"
-            android:layoutAnimation="@anim/grid_layout_animation"
-            app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
-            app:spanCount="2"
-            app:adapter="@{characterAdapter}"
-            app:visibility="@{loadState}"/>
+            app:isRefreshing="@{loadState}">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvCharacters"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scrollbars="vertical"
+                android:layoutAnimation="@anim/grid_layout_animation"
+                app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
+                app:spanCount="2"
+                app:adapter="@{characterAdapter}"
+                app:visibility="@{loadState}"/>
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     </FrameLayout>
 </layout>

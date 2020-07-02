@@ -7,12 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import io.github.rosariopfernandes.minibrothereye.R
 import io.github.rosariopfernandes.minibrothereye.databinding.FragmentListBinding
-import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 /**
@@ -43,13 +43,20 @@ class ListFragment : Fragment() {
                 null, extras)
         }.apply { addLoadStateListener { binding.loadState = it.refresh } }
 
-        binding.characterAdapter = charactersAdapter
-
-        lifecycleScope.launch {
-            viewModel.flow.collectLatest { pagingData ->
-                charactersAdapter.submitData(pagingData)
+        with (binding) {
+            characterAdapter = charactersAdapter
+            swipeRefreshLayout.setOnRefreshListener {
+                lifecycleScope.launch {
+                    viewModel.refreshList()
+                }
             }
         }
+
+        viewModel.characters.observe(viewLifecycleOwner, Observer { pagingData ->
+            lifecycleScope.launch {
+                charactersAdapter.submitData(pagingData)
+            }
+        })
     }
 
     override fun onDestroyView() {

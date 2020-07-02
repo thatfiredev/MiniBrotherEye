@@ -6,12 +6,13 @@ import io.github.rosariopfernandes.minibrothereye.repository.CharacterRepository
 import java.net.UnknownHostException
 
 class CharacterPagingSource(
+    private val forceRefresh: Boolean,
     private val characterRepository: CharacterRepository
 ) : PagingSource<Int, Character>() {
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Character> {
         return try {
             val nextPageNumber  = params.key ?: 0
-            val characterPage = characterRepository.fetchCharacterPage(nextPageNumber)
+            val characterPage = characterRepository.fetchCharacterPage(nextPageNumber, forceRefresh)
             LoadResult.Page(
                 data = characterPage,
                 prevKey = null,
