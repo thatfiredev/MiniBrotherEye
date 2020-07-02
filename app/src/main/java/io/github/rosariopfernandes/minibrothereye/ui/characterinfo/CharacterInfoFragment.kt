@@ -49,11 +49,14 @@ class CharacterInfoFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val characterId = requireArguments().getInt("id")
-        viewModel.fetchCharacterInfo(characterId)
+        viewModel.fetchCharacterInfo(characterId, false)
 
         with (binding) {
             lifecycleOwner = viewLifecycleOwner
             this.viewmodel = viewModel
+            swipeRefreshLayout.setOnRefreshListener {
+                viewModel.fetchCharacterInfo(characterId, true)
+            }
         }
         viewModel.exception.observe(viewLifecycleOwner, Observer { exception ->
             exception?.let {

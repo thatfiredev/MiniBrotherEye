@@ -1,5 +1,6 @@
 package io.github.rosariopfernandes.minibrothereye.repository
 
+import android.util.Log
 import io.github.rosariopfernandes.minibrothereye.data.CharacterDao
 import io.github.rosariopfernandes.minibrothereye.model.Character
 import io.github.rosariopfernandes.minibrothereye.network.CharacterService
@@ -33,8 +34,10 @@ class CharacterRepositoryImpl @Inject constructor(
         val characterInfo: Character
         val cachedCharacter = characterDao.getInfo(characterId)
         if (cachedCharacter != null && !forceRefresh) {
+            Log.e("Character", "Loading from cache")
             characterInfo = cachedCharacter
         } else {
+            Log.e("Character", "Loading from network")
             characterInfo = characterService.getCharacterInfo(characterId)
             characterDao.insertCharacter(characterInfo)
         }

@@ -47,6 +47,11 @@ fun bindSwipeRefreshing(swipeRefreshLayout: SwipeRefreshLayout, state: LoadState
     }
 }
 
+@BindingAdapter("isRefreshing")
+fun bindSwipeRefreshing(swipeRefreshLayout: SwipeRefreshLayout, isRefreshing: Boolean) {
+    swipeRefreshLayout.isRefreshing = isRefreshing
+}
+
 @BindingAdapter("visibility")
 fun bindProgressBarVisibility(progressBar: ProgressBar, state: LoadState) {
     when (state) {

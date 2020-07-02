@@ -9,10 +9,16 @@
             type="io.github.rosariopfernandes.minibrothereye.ui.characterinfo.CharacterInfoViewModel" />
     </data>
 
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:isRefreshing="@{viewmodel.isLoading}"
+        tools:context=".ui.characterinfo.CharacterInfoFragment">
+
     <androidx.core.widget.NestedScrollView
         android:layout_height="match_parent"
-        android:layout_width="match_parent"
-        tools:context=".ui.characterinfo.CharacterInfoFragment">
+        android:layout_width="match_parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -249,4 +255,6 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 </layout>
