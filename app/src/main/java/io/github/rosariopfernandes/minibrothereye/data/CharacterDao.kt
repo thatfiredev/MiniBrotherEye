@@ -1,5 +1,6 @@
 package io.github.rosariopfernandes.minibrothereye.data
 
+import androidx.paging.PagingSource
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -11,6 +12,9 @@ interface CharacterDao {
 
     @Query("SELECT * FROM characters LIMIT 4 OFFSET :offset")
     suspend fun get4Characters(offset: Int): List<Character>
+
+    @Query("SELECT * FROM characters")
+    suspend fun pagingSource(): PagingSource<Int, Character>
 
     @Query("SELECT * FROM characters WHERE id=:id")
     suspend fun getInfo(id: Int): Character?
