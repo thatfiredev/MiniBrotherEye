@@ -22,6 +22,9 @@ interface CharacterDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(characters: List<Character>)
 
+    @Query("SELECT COUNT(id) FROM characters")
+    suspend fun getCharacterCount(): Int
+
     @Query("SELECT * FROM characters")
     fun pagingSource(): PagingSource<Int, Character>
 

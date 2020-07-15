@@ -6,9 +6,6 @@ import retrofit2.http.Path
 
 interface CharacterService {
 
-    @GET("all/")
-    suspend fun getCharacterList(): List<Character>
-
     @GET("id/{id}/")
     suspend fun getCharacterInfo(@Path("id") id: Int): Character
 

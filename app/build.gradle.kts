@@ -55,9 +55,9 @@ dependencies {
     implementation("androidx.preference:preference-ktx:1.1.1")
 
     // Room (Offline Persistence)
-    implementation("androidx.room:room-runtime:2.2.5")
-    implementation("androidx.room:room-ktx:2.2.5") // support for coroutines
-    kapt("androidx.room:room-compiler:2.2.5")
+    implementation("androidx.room:room-runtime:2.3.0-alpha01")
+    implementation("androidx.room:room-ktx:2.3.0-alpha01") // support for coroutines
+    kapt("androidx.room:room-compiler:2.3.0-alpha01")
 
     // Retrofit (Networking)
     implementation("com.squareup.retrofit2:retrofit:2.9.0")

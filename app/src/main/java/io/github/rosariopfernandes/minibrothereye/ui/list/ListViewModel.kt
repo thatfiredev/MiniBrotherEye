@@ -6,13 +6,18 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.cachedIn
-import io.github.rosariopfernandes.minibrothereye.data.CharacterPagingSource
+import io.github.rosariopfernandes.minibrothereye.data.CharacterRemoteMediator
 import io.github.rosariopfernandes.minibrothereye.repository.CharacterRepository
 
 class ListViewModel @ViewModelInject constructor(
     private val repository: CharacterRepository
 ) : ViewModel() {
-    val flow = Pager(PagingConfig(pageSize = 4, prefetchDistance = 4)) {
-        CharacterPagingSource(repository)
-    }.flow.cachedIn(viewModelScope)
+    val pager = Pager(
+        PagingConfig(pageSize = 10, prefetchDistance = 10),
+        remoteMediator = CharacterRemoteMediator(repository)
+    ) {
+        repository.getPagingSource()
+    }
+
+    val flow = pager.flow.cachedIn(viewModelScope)
 }

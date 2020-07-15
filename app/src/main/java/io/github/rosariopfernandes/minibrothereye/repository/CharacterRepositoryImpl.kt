@@ -1,26 +1,24 @@
 package io.github.rosariopfernandes.minibrothereye.repository
 
+import androidx.paging.PagingSource
 import io.github.rosariopfernandes.minibrothereye.data.CharacterDao
+import io.github.rosariopfernandes.minibrothereye.data.RemoteKeyDao
 import io.github.rosariopfernandes.minibrothereye.model.Character
+import io.github.rosariopfernandes.minibrothereye.model.RemoteKey
+import io.github.rosariopfernandes.minibrothereye.network.ApiResponse
 import io.github.rosariopfernandes.minibrothereye.network.CharacterService
 import javax.inject.Inject
 
 class CharacterRepositoryImpl @Inject constructor(
+    private val remoteKeyDao: RemoteKeyDao,
     private val characterDao: CharacterDao,
     private val characterService: CharacterService
 ) : CharacterRepository {
 
-    /**
-     * Fetches 4 characters
-     */
-    override suspend fun fetchCharacterPage(offset: Int): List<Character> {
-        val charactersList: List<Character>
-        val cachedCharacters = characterDao.get4Characters(offset)
-        if (cachedCharacters.isEmpty()) {
-            charactersList = characterService.getCharacterList()
-            characterDao.insertAll(charactersList)
-        }
-        return characterDao.get4Characters(offset)
+    override fun getPagingSource(): PagingSource<Int, Character> = characterDao.pagingSource()
+
+    override suspend fun getPaginatedList(nextCursor: String): ApiResponse {
+        return characterService.getPaginatedList(nextCursor)
     }
 
     override suspend fun fetchCharacterInfo(characterId: Int): Character {
@@ -33,6 +31,25 @@ class CharacterRepositoryImpl @Inject constructor(
             characterDao.insertCharacter(characterInfo)
         }
         return characterInfo
+    }
+
+    override suspend fun insertCharacters(characters: List<Character>) {
+        characterDao.insertAll(characters)
+    }
+
+    override suspend fun getCharacterCount(): Int = characterDao.getCharacterCount()
+
+    override suspend fun insertOrReplaceKey(page: Int, nextCursor: Int) {
+        remoteKeyDao.insertOrReplace(RemoteKey(page, nextCursor))
+    }
+
+    override suspend fun getRemoteKeyForPage(page: String): RemoteKey {
+        return remoteKeyDao.remoteKeyByQuery(page)
+    }
+
+    override suspend fun cleanDatabase() {
+        remoteKeyDao.deleteAll()
+        characterDao.clearAll()
     }
 
 }

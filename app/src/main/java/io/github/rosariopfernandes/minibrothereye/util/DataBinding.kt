@@ -65,7 +65,7 @@ fun bindVisibility(view: View, isVisible: Boolean) {
 }
 
 @BindingAdapter("imageSrc")
-fun bindImageView(imageView: ImageView, url: String) {
+fun bindImageView(imageView: ImageView, url: String?) {
     imageView.load(url) {
         crossfade(true)
         placeholder(R.drawable.no_portrait)
