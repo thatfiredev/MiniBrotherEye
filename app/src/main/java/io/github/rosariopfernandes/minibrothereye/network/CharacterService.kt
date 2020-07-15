@@ -11,4 +11,7 @@ interface CharacterService {
 
     @GET("id/{id}/")
     suspend fun getCharacterInfo(@Path("id") id: Int): Character
+
+    @GET("cursor/{next_cursor}/")
+    suspend fun getPaginatedList(@Path("next_cursor") next_cursor: String): ApiResponse
 }

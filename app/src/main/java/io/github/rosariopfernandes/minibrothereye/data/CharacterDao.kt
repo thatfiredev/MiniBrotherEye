@@ -1,5 +1,6 @@
 package io.github.rosariopfernandes.minibrothereye.data
 
+import androidx.paging.PagingSource
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -20,6 +21,9 @@ interface CharacterDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(characters: List<Character>)
+
+    @Query("SELECT * FROM characters")
+    fun pagingSource(): PagingSource<Int, Character>
 
     @Query("DELETE FROM characters")
     suspend fun clearAll()
