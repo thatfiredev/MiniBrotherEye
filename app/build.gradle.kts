@@ -53,6 +53,7 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0")
     implementation("androidx.paging:paging-runtime-ktx:3.0.0-alpha02")
     implementation("androidx.preference:preference-ktx:1.1.1")
+    implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
 
     // Room (Offline Persistence)
     implementation("androidx.room:room-runtime:2.2.5")

@@ -31,13 +31,13 @@ class CharacterInfoViewModel @ViewModelInject constructor(
         _exception.value = null
     }
 
-    fun fetchCharacterInfo(characterId: Int) {
+    fun fetchCharacterInfo(characterId: Int, forceRefresh: Boolean) {
         viewModelScope.launch {
             // There's no point in fetching again if it's already loading
             if (_isLoading.value == false) {
                 _isLoading.value = true
                 try {
-                    val character = repository.fetchCharacterInfo(characterId)
+                    val character = repository.fetchCharacterInfo(characterId, forceRefresh)
                     _characterInfo.value = character
                 } catch (e: Exception) {
                     e.printStackTrace()
