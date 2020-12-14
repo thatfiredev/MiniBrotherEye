@@ -45,9 +45,10 @@
             android:scrollbars="vertical"
             android:layoutAnimation="@anim/grid_layout_animation"
             app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
-            app:spanCount="2"
+            app:spanCount="@integer/characters_span_count"
             app:adapter="@{characterAdapter}"
-            app:visibility="@{loadState}"/>
+            app:visibility="@{loadState}"
+            tools:listitem="@layout/item_character"/>
 
     </FrameLayout>
 </layout>
