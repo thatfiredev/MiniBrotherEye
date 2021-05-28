@@ -51,7 +51,7 @@ dependencies {
     implementation("androidx.navigation:navigation-ui-ktx:2.2.2")
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.2.0")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0")
-    implementation("androidx.paging:paging-runtime-ktx:3.0.0-alpha02")
+    implementation("androidx.paging:paging-runtime-ktx:3.0.0")
     implementation("androidx.preference:preference-ktx:1.1.1")
 
     // Room (Offline Persistence)
