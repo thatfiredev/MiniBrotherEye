@@ -1,6 +1,7 @@
 package io.github.rosariopfernandes.minibrothereye.data
 
 import androidx.paging.PagingSource
+import androidx.paging.PagingState
 import io.github.rosariopfernandes.minibrothereye.model.Character
 import io.github.rosariopfernandes.minibrothereye.repository.CharacterRepository
 import java.net.UnknownHostException
@@ -21,5 +22,9 @@ class CharacterPagingSource(
             // Unable to connect to the network
             LoadResult.Error(e)
         }
+    }
+
+    override fun getRefreshKey(state: PagingState<Int, Character>): Int? {
+        return null
     }
 }

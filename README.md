@@ -30,7 +30,7 @@ It is supposed to be a smaller version of DC's [Brother Eye](https://dc.fandom.c
     - [DataBinding](https://developer.android.com/topic/libraries/data-binding)
     - [LiveData](https://developer.android.com/topic/libraries/architecture/livedata)
     - [Navigation Component](https://developer.android.com/guide/navigation)
-    - [Paging Library 3](https://developer.android.com/topic/libraries/architecture/paging) (alpha)
+    - [Paging 3](https://developer.android.com/topic/libraries/architecture/paging/v3-overview)
     - [Room](https://developer.android.com/topic/libraries/architecture/room)
     - [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel)
 - [Hilt](https://developer.android.com/training/dependency-injection/hilt-android) (alpha) for

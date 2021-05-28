@@ -7,7 +7,7 @@ plugins {
 
 android {
     compileSdkVersion(30)
-    buildToolsVersion("30.0.0")
+    buildToolsVersion("30.0.3")
 
     defaultConfig {
         applicationId = "io.github.rosariopfernandes.minibrothereye"
@@ -38,26 +38,24 @@ android {
 }
 
 dependencies {
-    val kotlinVersion = rootProject.extra.get("kotlin_version") as String
     val hiltVersion = rootProject.extra.get("hilt_version") as String
 
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
-    implementation("org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion")
-    implementation("androidx.core:core-ktx:1.3.0")
+    implementation("androidx.core:core-ktx:1.5.0")
     implementation("androidx.appcompat:appcompat:1.1.0")
-    implementation("com.google.android.material:material:1.2.0-beta01")
-    implementation("androidx.constraintlayout:constraintlayout:1.1.3")
-    implementation("androidx.navigation:navigation-fragment-ktx:2.2.2")
-    implementation("androidx.navigation:navigation-ui-ktx:2.2.2")
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.2.0")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0")
-    implementation("androidx.paging:paging-runtime-ktx:3.0.0-alpha02")
+    implementation("com.google.android.material:material:1.3.0")
+    implementation("androidx.constraintlayout:constraintlayout:2.0.4")
+    implementation("androidx.navigation:navigation-fragment-ktx:2.3.5")
+    implementation("androidx.navigation:navigation-ui-ktx:2.3.5")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.3.1")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1")
+    implementation("androidx.paging:paging-runtime-ktx:3.0.0")
     implementation("androidx.preference:preference-ktx:1.1.1")
 
     // Room (Offline Persistence)
-    implementation("androidx.room:room-runtime:2.2.5")
-    implementation("androidx.room:room-ktx:2.2.5") // support for coroutines
-    kapt("androidx.room:room-compiler:2.2.5")
+    implementation("androidx.room:room-runtime:2.3.0")
+    implementation("androidx.room:room-ktx:2.3.0") // support for coroutines
+    kapt("androidx.room:room-compiler:2.3.0")
 
     // Retrofit (Networking)
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
@@ -67,7 +65,7 @@ dependencies {
     implementation("io.coil-kt:coil:0.11.0")
 
     // Coroutines (Asynchronous Operations)
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.6")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.0")
 
     // Hilt (Dependency Injection)
     implementation("com.google.dagger:hilt-android:$hiltVersion")
