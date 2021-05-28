@@ -11,7 +11,7 @@ buildscript {
     dependencies {
         val kotlinVersion = project.extra["kotlin_version"] as String
         val hiltVersion = project.extra["hilt_version"] as String
-        classpath("com.android.tools.build:gradle:4.0.0")
+        classpath("com.android.tools.build:gradle:4.2.1")
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion")
         classpath("com.google.dagger:hilt-android-gradle-plugin:$hiltVersion")
         // NOTE: Do not place your application dependencies here; they belong

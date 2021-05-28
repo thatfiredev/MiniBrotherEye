@@ -7,7 +7,7 @@ plugins {
 
 android {
     compileSdkVersion(30)
-    buildToolsVersion("30.0.0")
+    buildToolsVersion("30.0.3")
 
     defaultConfig {
         applicationId = "io.github.rosariopfernandes.minibrothereye"
@@ -38,7 +38,6 @@ android {
 }
 
 dependencies {
-    val kotlinVersion = rootProject.extra.get("kotlin_version") as String
     val hiltVersion = rootProject.extra.get("hilt_version") as String
 
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
