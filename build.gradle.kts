@@ -1,7 +1,7 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
     extra.apply {
-        set("kotlin_version", "1.3.72")
+        set("kotlin_version", "1.5.0")
         set("hilt_version", "2.28-alpha")
     }
     repositories {

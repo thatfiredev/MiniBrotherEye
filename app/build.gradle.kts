@@ -42,7 +42,6 @@ dependencies {
     val hiltVersion = rootProject.extra.get("hilt_version") as String
 
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
-    implementation("org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion")
     implementation("androidx.core:core-ktx:1.5.0")
     implementation("androidx.appcompat:appcompat:1.1.0")
     implementation("com.google.android.material:material:1.3.0")
@@ -67,7 +66,7 @@ dependencies {
     implementation("io.coil-kt:coil:0.11.0")
 
     // Coroutines (Asynchronous Operations)
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.6")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.0")
 
     // Hilt (Dependency Injection)
     implementation("com.google.dagger:hilt-android:$hiltVersion")
