@@ -9,6 +9,7 @@ buildscript {
         jcenter()
     }
     dependencies {
+        // Please review this
         val kotlinVersion = project.extra["kotlin_version"] as String
         val hiltVersion = project.extra["hilt_version"] as String
         classpath("com.android.tools.build:gradle:4.0.0")
